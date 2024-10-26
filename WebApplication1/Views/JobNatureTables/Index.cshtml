@@ -1,0 +1,35 @@
+﻿@model IEnumerable<DatabaseLayer.JobNatureTable>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="text-center">Job Nature List</h2>
+<div class="container">
+    <p>
+        @Html.ActionLink("Create Job Nature", "Create", new { }, new { @class = "btn head-btn2" })
+    </p>
+
+    <table class="table table-hover table-bordered table-striped">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.JobNature)
+            </th>
+            <th>Operations</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.JobNature)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.JobNatureID }, new { @class = "genric-btn primary" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.JobNatureID }, new { @class = "genric-btn danger" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

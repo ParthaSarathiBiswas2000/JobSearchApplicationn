@@ -1,0 +1,115 @@
+﻿@model WebApplication1.Models.ApplyJobMV
+@{
+    ViewBag.Title = "ApplyJob";
+}
+
+
+<section class="contact-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="contact-title">Confirmation of final Submission</h2>
+                <br />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-lg-8">
+                @using (Html.BeginForm("ApplyJob", "ApplyJob", FormMethod.Post, new { @class = "form-contact", novalidate = "novalidate" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                Employee Name
+                                @Html.EditorFor(model => model.EmployeeName, new
+                                        {
+                                        htmlAttributes = new
+                                        {
+                                           @class = "form-control single-input",
+                                           @readonly = "readonly",
+
+                                        }
+                                        })
+                                @Html.ValidationMessageFor(model => model.EmployeeName, "", new { @class = "text-danger" })
+                                @Html.HiddenFor(model => model.EmployeeID)
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                Applied Job Title
+                                @Html.EditorFor(model => model.JobCategoryName, new
+                                {
+                                htmlAttributes = new
+                                {
+                                   @class = "form-control single-input",
+                                   @readonly = "readonly",
+                                }
+                                })
+                                @Html.ValidationMessageFor(model => model.JobCategoryName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                Applied Job Title
+                                @Html.EditorFor(model => model.JobName, new
+                                {
+                                htmlAttributes = new
+                                {
+                                   @class = "form-control single-input",
+                                   @readonly = "readonly",
+                                }
+                                })
+                                @Html.ValidationMessageFor(model => model.JobName, "", new { @class = "text-danger" })
+                                @Html.HiddenFor(model => model.PostJobID)
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                Applied Company Name
+                                @Html.EditorFor(model => model.CompanyName, new
+                              {
+                               htmlAttributes = new
+                               {
+                                   @class = "form-control single-input",
+                                   @readonly = "readonly",
+                               }
+                               })
+                                @Html.ValidationMessageFor(model => model.CompanyName, "", new { @class = "text-danger" })
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group mt-3">
+                        <input type="submit" value="Save" class="button button-contactForm boxed-btn" />
+                        @Html.ActionLink("Back to List", "FilterJob", "Job", new { }, new { @class = "button button-contactForm boxed-btn", @style = "float:right;" })
+                    </div>
+
+                }
+            </div>
+            <div class="col-lg-3 offset-lg-1">
+                <div class="media contact-info">
+                    <span class="contact-info__icon"><i class="ti-home"></i></span>
+                    <div class="media-body">
+                        <h3>Kolkata, West Bengal.</h3>
+                        <p>India, 743502</p>
+                    </div>
+                </div>
+                <div class="media contact-info">
+                    <span class="contact-info__icon"><i class="ti-tablet"></i></span>
+                    <div class="media-body">
+                        <h3>+91 9064884480</h3>
+                        <p>Mon to Fri 9am to 6pm</p>
+                    </div>
+                </div>
+                <div class="media contact-info">
+                    <span class="contact-info__icon"><i class="ti-email"></i></span>
+                    <div class="media-body">
+                        <h3>support@biswas.com</h3>
+                        <p>Send us your query anytime!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+

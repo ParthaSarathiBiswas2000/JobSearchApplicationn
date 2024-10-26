@@ -1,0 +1,117 @@
+﻿@model WebApplication1.Models.MyDashboardMV
+@{
+    ViewBag.Title = "MyApplicationForm";
+}
+
+
+<script>
+    function printSelectedArea() {
+        var printContent = document.getElementById("printableArea").innerHTML;
+
+        var styleElement = document.createElement("style");
+
+        var styleTags = document.querySelectorAll("body style");
+
+        for (var i = 0; i < styleTags.length; i++) {
+            styleElement.appendChild(document.createTextNode(styleTags[i].innerHTML));
+        }
+
+        document.head.appendChild(styleElement);
+
+        var originalContent = document.body.innerHTML;
+        document.body.innerHTML = printContent;
+
+        window.print();
+
+        document.body.innerHTML = originalContent;
+
+        document.head.removeChild(styleElement);
+    }
+</script>
+
+
+
+<div id="printableArea">
+    <div class="container">
+        <h1 style="font-weight:bold; color:indigo" class="text-center">@Model.Employee.EmployeeName</h1>
+        <br />
+        <h5 class="text-center">@Model.Employee.EmailAddress | @Model.User.ContactNo</h5>
+        <hr />
+    </div>
+
+    <div class="container">
+        <h4>PERSONAL DETAILS : </h4>
+        <div class="row">
+            <div class="col-md-6">
+                <h5><b>Father's Name : </b>@Model.Employee.FatherName</h5>
+                <h6><b>Native Country : </b>@Model.Employee.CountryTable.Country</h6>
+                <h6><b>Date of Birth : </b>@Model.Employee.DOB</h6>
+                <h6><b>Gender : </b>@Model.Employee.Gender</h6>
+                <h6><b>Parmanent Address : </b>@Model.Employee.PermanentAddress</h6>
+            </div>
+            <div class="col-md-6">
+                <h6><b>CNIC Number : </b>@Model.Employee.CNIC</h6>
+                <h6><b>FNIC Number : </b>@Model.Employee.FNIC</h6>
+            </div>
+        </div>
+    </div>
+    <hr />
+
+    <div class="container">
+        <h4>EDUCATION : </h4>
+        <div class="row">
+            <div class="col-md-6">
+                <h5>@Model.Educations.InstituteName</h5>
+                <h6>@Model.Educations.TitleOfEducation</h6>
+                <h6>@Model.Educations.Degree</h6>
+            </div>
+            <div class="col-md-6">
+                <h6>@Model.Educations.City | @Model.Educations.CountryTable.Country </h6>
+                <h6>@Model.Educations.FromYear -- @Model.Educations.ToYear</h6>
+            </div>
+        </div>
+    </div>
+    <hr />
+
+    <div class="container">
+        <h4>WORK EXPERIENCE : </h4>
+        <div class="row">
+            <div class="col-md-6">
+                <h5>@Model.WorkExperience.Company</h5>
+                <h6>@Model.WorkExperience.Title</h6>
+            </div>
+            <div class="col-md-6">
+                <h6>@Model.WorkExperience.CountryTable.Country</h6>
+                <h6>@Model.WorkExperience.FromYear -- @Model.WorkExperience.ToYear</h6>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h5>@Model.WorkExperience.Description</h5>
+            </div>
+        </div>
+    </div>
+    <hr />
+
+    <div class="container">
+        <h4>SKILLS : </h4>
+        @foreach (var item in Model.Skill)
+        {
+            <ol>
+                <li>
+                    @item.SkillName
+                </li>
+            </ol>
+        }
+    </div>
+    <hr />
+</div>
+
+    <div class="d-flex justify-content-center pt-3 pb-5">
+        <button type="button" onclick="printSelectedArea()" class="btn head-btn2">
+            PRINT
+        </button>
+    </div>
+
+
+

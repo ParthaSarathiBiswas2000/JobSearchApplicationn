@@ -1,0 +1,197 @@
+﻿@model WebApplication1.Models.PostJobMV
+@{
+    ViewBag.Title = "PostJob";
+}
+
+<section class="contact-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="contact-title">Post Job</h2>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            </div>
+            @using (Html.BeginForm("PostJob", "Job", FormMethod.Post, new { @class = "form-contact", novalidate = "novalidate" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                Enter Job Title
+                                @Html.EditorFor(model => model.JobTitle, new
+                                {
+                                       htmlAttributes = new
+                                       {
+                                           @class = "form-control single-input",
+                                           type = "text",
+                                           name = "jobtitle",
+                                           id = "jobtitle",
+                                           placeholder = "Enter Job Title",
+                                           onfocus = "this.placeholder = ''",
+                                           onblur = "this.placeholder = 'Enter Job Title'",
+                                           required = true
+                                       }
+                                })
+                                @Html.ValidationMessageFor(model => model.JobTitle, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                Location
+                                @Html.EditorFor(model => model.Location, new
+                                {
+                                       htmlAttributes = new
+                                       {
+                                           @class = "form-control single-input",
+                                           type = "text",
+                                           name = "location",
+                                           id = "location",
+                                           placeholder = "Enter Location",
+                                           onfocus = "this.placeholder = ''",
+                                           onblur = "this.placeholder = 'Enter Location'",
+                                           required = true
+                                       }
+                                })
+                                @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                Enter Job Minimum Salary
+                                @Html.EditorFor(model => model.MinSalary, new
+                                {
+                                       htmlAttributes = new
+                                       {
+                                           @class = "form-control single-input",
+                                           type = "number",
+                                           name = "minsalary",
+                                           id = "minsalary",
+                                           placeholder = "Enter Min Salary",
+                                           onfocus = "this.placeholder = ''",
+                                           onblur = "this.placeholder = 'Enter Min Salary'",
+                                           required = true
+                                       }
+                                })
+                                @Html.ValidationMessageFor(model => model.MinSalary, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                Enter Job Maximum Salary
+                                @Html.EditorFor(model => model.MaxSalary, new
+                                {
+                                       htmlAttributes = new
+                                       {
+                                           @class = "form-control single-input",
+                                           type = "number",
+                                           name = "maxsalary",
+                                           id = "maxsalary",
+                                           placeholder = "Enter Max Salary",
+                                           onfocus = "this.placeholder = ''",
+                                           onblur = "this.placeholder = 'Enter Max Salary'",
+                                           required = true
+                                       }
+                                })
+                                @Html.ValidationMessageFor(model => model.MaxSalary, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-sm-6" id="divcompanyname">
+                            <div class="form-group">
+                                Enter Required Job Vacancy
+                                @Html.EditorFor(model => model.Vacancy, new
+                                {
+                                       htmlAttributes = new
+                                       {
+                                           @class = "form-control single-input",
+                                           type = "number",
+                                           name = "vacancy",
+                                           id = "vacancy",
+                                           placeholder = "Enter Vacancy",
+                                           onfocus = "this.placeholder = ''",
+                                           onblur = "this.placeholder = 'Enter Vacancy'",
+                                           required = true
+                                       }
+                                })
+                                @Html.ValidationMessageFor(model => model.Vacancy, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-sm-6" id="divjobdescription">
+                            <div class="form-group">
+                                Select Application Date
+                                @Html.EditorFor(model => model.ApplicationLastDate, new
+                                {
+                                       htmlAttributes = new
+                                       {
+                                           @class = "form-control single-input",
+                                           type = "text",
+                                           name = "applicationlastdate",
+                                           id = "applicationlastdate",
+                                           placeholder = "Enter Apllication Last Date",
+                                           onfocus = "this.placeholder = ''",
+                                           onblur = "this.placeholder = 'Enter Application Last Date'",
+                                           required = true
+                                       }
+                                })
+                                @Html.ValidationMessageFor(model => model.ApplicationLastDate, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            Enter Job Category
+                            <div class="form-group">
+
+                                @Html.DropDownList("JobCategoryID", null, "Select Category", new { @class = "form-control single-input" })
+                                @*{
+                                       htmlAttributes = new
+                                       {
+                                           @class = "form-control single-input",
+
+                                       }
+                                })*@
+                                @Html.ValidationMessageFor(model => model.JobCategoryID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            Enter Job Nature
+                            <div class="form-group">
+
+                                @Html.DropDownList("JobNatureID", null, "Select Nature", new { @class = "form-control single-input" })
+                                @*{
+                                       htmlAttributes = new
+                                       {
+                                           @class = "form-control single-input",
+
+                                       }
+                                })*@
+                                @Html.ValidationMessageFor(model => model.JobNatureID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-12" style="" id="divcompanydescription">
+                            <div class="form-group">
+                                Enter Job Description
+                                @Html.EditorFor(model => model.JobDescription, new
+                                {
+                                       htmlAttributes = new
+                                       {
+                                           @class = "form-control single-input",
+                                           type = "text",
+                                           name = "jobdescription",
+                                           id = "jobdescription",
+                                           placeholder = "Enter Description",
+                                           onfocus = "this.placeholder = ''",
+                                           onblur = "this.placeholder = 'Enter Description'",
+                                           required = true
+                                       }
+                                })
+                                @Html.ValidationMessageFor(model => model.JobDescription, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                     <div class="form-group mt-3">
+                         <input type="submit" value="Post Job" class="button button-contactForm boxed-btn" />
+                     </div>
+                </div>
+             }
+        </div>
+    </div>
+</section>
+

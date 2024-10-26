@@ -1,0 +1,134 @@
+﻿@model  WebApplication1.Models.EmployeeMV
+
+
+@{
+    ViewBag.Title = "MyAppliedJobs";
+}
+
+
+
+
+
+
+
+    <div class="container">
+
+        <!-- Outer Row -->
+        <div class="row justify-content-center">
+
+            <div class="col-xl-12 col-lg-12 col-md-12">
+
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-header">
+                        <h3 style="font-weight:bold; color:indigo">My Dashboard</h3>
+                    </div>
+                    <div class="card-body p-0 m-2">
+                        <!-- Nested Row within Card Body -->
+                        <div class="row">
+                            <div class="col-md-4 pt-4">
+                                <div class="container">
+                                    <h5>Candidate Name :</h5>
+                                    @Model.EmployeeName
+                                </div>
+                            </div>
+                            <div class="col-md-4 pt-4">
+                                <div class="container">
+                                    <h5>Father's' Name :</h5>
+                                    @Html.DisplayFor(modelItem => Model.FatherName)
+                                </div>
+                            </div>
+                            <div class="col-md-4 pt-4">
+                                <div class="container">
+                                    <h5>Date of Birth :</h5>
+                                    @Html.DisplayFor(modelItem => Model.DOB)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 pt-4">
+                                <div class="container">
+                                    <h5>Candidate Email Address :</h5>
+                                    @Html.DisplayFor(modelItem => Model.EmailAddress)
+                                </div>
+                            </div>
+                            <div class="col-md-4 pt-4">
+                                <div class="container">
+                                    <h5>CNIC number :</h5>
+                                    @Html.DisplayFor(modelItem => Model.CNIC)
+                                </div>
+                            </div>
+                            <div class="col-md-4 pt-4">
+                                <div class="container">
+                                    <h5>FNIC number :</h5>
+                                    @Html.DisplayFor(modelItem => Model.FNIC)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 pt-4 pb-4">
+                                <div class="container">
+                                    <h5>Candidate Gender :</h5>
+                                    @Html.DisplayFor(modelItem => Model.Gender)
+                                </div>
+                            </div>
+                            <div class="col-md-4 pt-4 pb-4">
+                                <div class="container">
+                                    <h5>Contact Number :</h5>
+                                    @Html.DisplayFor(modelItem => Model.ContactNo)
+                                </div>
+                            </div>
+                            <div class="col-md-4 pt-4 pb-4">
+                                <div class="container">
+                                    <h5>User Type :</h5>
+                                    @*@Html.DisplayFor(modelItem => Model.UserTable.UserTypeTable.UserType)*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+     
+
+
+        <div class="row justify-content-center">
+
+                    <div class="col-md-8">
+
+                        <div class="card o-hidden border-0 shadow-lg my-5">
+                            <div class="card-header">
+                                <h3 style="font-weight:bold; color:indigo">Education</h3>
+                            </div>
+                            <div class="card-body p-0 m-2">
+                                <!-- Nested Row within Card Body -->
+                                <div class="row">
+                                    <div class="col-md-6 pt-4">
+                                        <div class="container">
+                                            <h5>Candidate Name :</h5>
+                                            @Html.DisplayFor(modelItem => Model.ContactNo)
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 pt-4">
+                                        <div class="container">
+                                            <h5>Father's' Name :</h5>
+                                            @Html.DisplayFor(modelItem => Model.EmployeeName)
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="card o-hidden border-0 shadow-lg my-5">
+                            <div class="card-header">
+                                <h3 style="font-weight:bold; color:indigo">Work Experience</h3>
+                            </div>
+                        </div>
+                    </div>
+        </div>
+    </div>
+

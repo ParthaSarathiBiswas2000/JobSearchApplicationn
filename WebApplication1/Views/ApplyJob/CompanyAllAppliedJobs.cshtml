@@ -1,0 +1,66 @@
+﻿@model IEnumerable<DatabaseLayer.JobApplyTable>
+
+@{
+    ViewBag.Title = "CompanyAllAppliedJobs";
+}
+
+<h2 style="font-weight:bold; color:indigo" class="text-center">All Applied Jobs</h2>
+
+<div class="container">
+    <table class="table table-hover table-bordered table-striped">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PostJobTable.JobTitle)
+            </th>
+            <th>
+                Job Apply Date & Time
+            </th>
+            <th>
+                Job Status Update Time
+            </th>
+            <th>
+                Job Status Update Reason
+            </th>
+            <th>
+                CURRENT JOB STATUS
+            </th>
+            <th>
+                CANDIDATE NAME
+            </th>
+            <th>
+                OPERATION
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PostJobTable.JobTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.JobApplyDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.JobApplyStatusUpdateDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.JobApplyStatusUpdateReason)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.JobApplyStatusTable.JobApplyStatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmployeeTable.EmployeeName)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "MyApplicationForm", "MyDashboard", new { id = item.EmployeeID }, new { @class = "genric-btn primary" })
+                    @Html.ActionLink("Approve", "SelectCandidate", "ApplyJob", new { id = item.JobApplyID }, new { @class = "genric-btn info" })
+                    @Html.ActionLink("Cancel", "CancelCandidate", "ApplyJob", new { id = item.JobApplyID }, new { @class = "genric-btn warning" })
+                    @Html.ActionLink("Delete", "Delete", "ApplyJob" , new { id = item.JobApplyID }, new { @class = "genric-btn danger" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

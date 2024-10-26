@@ -1,0 +1,90 @@
+﻿@model IEnumerable<DatabaseLayer.PostJobTable>
+
+@{
+    ViewBag.Title = "CompanyJobList";
+}
+
+<h2 class="text-center">Company Job List</h2>
+<div class="container">
+    <p>
+        @Html.ActionLink("Add Job Post", "PostJob", new { }, new { @class = "btn head-btn2" })
+    </p>
+    <table class="table table-hover table-bordered table-striped">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.JobTitle)
+            </th>
+            <th>
+                Min - Max Salary
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vacancy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PostDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CompanyTable.CompanyName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobCategoryTable.JobCategory)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobNatureTable.JobNature)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobStatusTable.JobStatus)
+            </th>
+            <th>
+                Operations
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.JobTitle)
+                </td>
+                <td>
+                    @item.MinSalary - @item.MaxSalary INR
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Vacancy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PostDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CompanyTable.CompanyName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.JobCategoryTable.JobCategory)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.JobNatureTable.JobNature)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.JobStatusTable.JobStatus)
+                </td>
+                <td>
+                    @Html.ActionLink("View", "JobDetails", new { id = item.PostJobID }, new { @class = "genric-btn info" })
+                    @Html.ActionLink("Details", "AddJobRequirements", new { id = item.PostJobID }, new { @class = "genric-btn primary" })
+                    @Html.ActionLink("Delete ", "DeleteJobPost", new { id = item.PostJobID }, new { @class = "genric-btn danger" })
+                </td>
+            </tr>
+        }
+    </table>
+</div>

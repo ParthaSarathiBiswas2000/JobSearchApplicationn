@@ -1,0 +1,41 @@
+﻿@model IEnumerable<DatabaseLayer.JobCategoryTable>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="text-center">Job Category List</h2>
+<div class="container">
+    <p>
+        @Html.ActionLink("Create New", "Create", new { }, new { @class = "btn head-btn2" })
+    </p>
+
+    <table class="table table-hover table-bordered table-striped">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.JobCategory)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>Operations</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.JobCategory)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.JobCategoryID }, new { @class = "genric-btn primary" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.JobCategoryID }, new { @class = "genric-btn danger" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

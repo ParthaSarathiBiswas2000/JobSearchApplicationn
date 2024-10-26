@@ -1,0 +1,218 @@
+﻿@model WebApplication1.Models.WorkExperienceMV
+@{
+    ViewBag.Title = "Create";
+}
+
+<script src="~/Content/assets/js/jquery-3.3.1.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+@section Scripts {
+    @if (TempData["Successwork"] != null)
+    {
+        <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    Swal.fire({
+                        title: 'Success !',
+                        text: '@TempData["Successwork"]',
+                        icon: 'success',
+                        confirmButtonText: 'OK',
+                    });
+                });
+        </script>
+    }
+    else if (TempData["Failedwork"] != null)
+    {
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                Swal.fire({
+                    title: 'Notification !',
+                    text: '@TempData["Failedwork"]',
+                    icon: 'warning',
+                    confirmButtonText: 'OK',
+                });
+            });
+        </script>
+    }
+}
+
+
+<section class="contact-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="contact-title">Candidate Work Experience Details</h2>
+                <br />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-lg-8">
+                @using (Html.BeginForm("Create", "WorkExperience", FormMethod.Post, new { @class = "form-contact", novalidate = "novalidate" }))
+                {
+                    @Html.AntiForgeryToken()
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            Employee Name
+                            @Html.EditorFor(model => model.EmployeeName, new
+                                    {
+                                    htmlAttributes = new
+                                    {
+                                       @class = "form-control single-input",
+                                       @readonly = "readonly",
+
+                                    }
+                                    })
+                            @Html.ValidationMessageFor(model => model.EmployeeName, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.EmployeeID)
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            Previous Company Name
+                            @Html.EditorFor(model => model.Company, new
+                       {
+                           htmlAttributes = new
+                           {
+                               @class = "form-control single-input",
+                               type = "text",
+                               name = "companyname",
+                               id = "companyname",
+                               placeholder = "Enter Previous Company Name",
+                               onfocus = "this.placeholder = ''",
+                               onblur = "this.placeholder = 'Enter Previous Company Name'",
+                           }
+                       })
+                            @Html.ValidationMessageFor(model => model.Company, "", new { @class = "text-danger" })
+
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            Title of Education
+                            @Html.EditorFor(model => model.Title, new
+                                    {
+                                    htmlAttributes = new
+                                    {
+                                       @class = "form-control single-input",
+                                       type = "text",
+                                       name = "title",
+                                       id = "title",
+                                       placeholder = "Enter Title of Work",
+                                       onfocus = "this.placeholder = ''",
+                                       onblur = "this.placeholder = 'Enter Title of Work'",
+
+                                    }
+                                    })
+                            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            Enter Previous job joining date
+                            @Html.EditorFor(model => model.FromYear, new
+                                    {
+                                    htmlAttributes = new
+                                    {
+                                       @class = "form-control single-input",
+                                       type = "date",
+                                       name = "fromdate",
+                                       id = "fromdate",
+                                       placeholder = "Enter Start Year",
+                                       onfocus = "this.placeholder = ''",
+                                       onblur = "this.placeholder = 'Enter Start Year'",
+
+                                    }
+                                    })
+                            @Html.ValidationMessageFor(model => model.FromYear, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            Enter Previous Job resignation date
+                            @Html.EditorFor(model => model.ToYear, new
+                                    {
+                                    htmlAttributes = new
+                                    {
+                                       @class = "form-control single-input",
+                                       type = "date",
+                                       name = "todate",
+                                       id = "todate",
+                                       placeholder = "Enter End Year",
+                                       onfocus = "this.placeholder = ''",
+                                       onblur = "this.placeholder = 'Enter End Year'",
+
+                                    }
+                                    })
+                            @Html.ValidationMessageFor(model => model.ToYear, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            Select Country
+                            <div class="form-group">
+                                @Html.DropDownList("CountryID", null, "Select Country", new { @class = "form-control single-input" })
+                                @Html.ValidationMessageFor(model => model.CountryID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            Enter Description
+                            @Html.EditorFor(model => model.Description, new
+                                    {
+                                    htmlAttributes = new
+                                    {
+                                       @class = "form-control single-input",
+                                       type = "text",
+                                       name = "description",
+                                       id = "description",
+                                       placeholder = "Enter Work Experience Description",
+                                       onfocus = "this.placeholder = ''",
+                                       onblur = "this.placeholder = 'Enter Work Experience Description'",
+
+                                    }
+                                    })
+                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                    <div class="form-group mt-3">
+                        <input type="submit" value="Save" class="button button-contactForm boxed-btn" />
+                        @Html.ActionLink("Next", "AddSkills", "Skill", new { id = Model.EmployeeID }, new { @class = "button button-contactForm boxed-btn", @style = "float:right;" })
+                    </div>
+
+                }
+            </div>
+            <div class="col-lg-3 offset-lg-1">
+                <div class="media contact-info">
+                    <span class="contact-info__icon"><i class="ti-home"></i></span>
+                    <div class="media-body">
+                        <h3>Kolkata, West Bengal.</h3>
+                        <p>India, 743502</p>
+                    </div>
+                </div>
+                <div class="media contact-info">
+                    <span class="contact-info__icon"><i class="ti-tablet"></i></span>
+                    <div class="media-body">
+                        <h3>+91 9064884480</h3>
+                        <p>Mon to Fri 9am to 6pm</p>
+                    </div>
+                </div>
+                <div class="media contact-info">
+                    <span class="contact-info__icon"><i class="ti-email"></i></span>
+                    <div class="media-body">
+                        <h3>support@biswas.com</h3>
+                        <p>Send us your query anytime!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
